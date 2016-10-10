@@ -8,7 +8,7 @@ echo “Sleeping for 30 seconds while instances are being run”
 
 sleep 30
 
-ID=`aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,ClientToken]' | grep firstrun`
+ID=`aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,ClientToken]' | grep first-run`
 
 aws elb create-load-balancer --load-balancer-name itmo-444-jaa --listeners Protocol=Http,LoadBalancerPort=80,InstanceProtocol=Http,InstancePort=80 --subnets subnet-ad4077c8
 
