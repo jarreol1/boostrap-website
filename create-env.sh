@@ -1,4 +1,4 @@
-#!/bin/bas
+#!/bin/bash
 
 aws ec2 run-instances --image-id $1 --key-name hw4 --security-group-ids sg-8474f0fd --instance-type t2.micro --client-token first-run --user-data file://installapp.sh --count 3
 
