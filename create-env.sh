@@ -5,7 +5,7 @@ then
     exit 0 	
 else
 
-aws ec2 run-instances --image-id $1 --key-name $2 --security-group-ids $3 --instance-type t2.micro --client-token current-running-instances --user-data file://installapp.sh --count $5
+aws ec2 run-instances --image-id $1 --key-name $2 --security-group-ids $3 --instance-type t2.micro --client-token current-assignment --user-data file://installapp.sh --count $5
 
 echo
 
@@ -13,7 +13,7 @@ echo “Sleeping for 30 seconds while instances are being run”
 
 sleep 30
 
-ID=`aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,ClientToken]' | grep current-running-instances | awk '{print $1}'`
+ID=`aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,ClientToken]' | grep current-assignment | awk '{print $1}'`
 
 aws elb create-load-balancer --load-balancer-name itmo-444-jaa --listeners Protocol=Http,LoadBalancerPort=80,InstanceProtocol=Http,InstancePort=80 --subnets subnet-ad4077c8
 
